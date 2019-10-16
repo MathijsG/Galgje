@@ -1,41 +1,65 @@
 
 // Woorden-array
-var wordList  = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag"];
+var wordList = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag"];
 
 // Kies een random woord uit de array
 let word = wordList[Math.floor(Math.random() * wordList.length)].toLowerCase();
 console.log("Het woord is: " + word);
 var amountOfTries = 5;
-let letterOutput = document.querySelector("#letterOutput"); // Div waar de letters worden gerenderd
-var submitButton = document.querySelector("#submit"); // Submit-knop
+
 var indexOfCorrectLetters = []; // Array met geraden letters
 //submitButton.addEventListener("click", function(){ checkLetter();});
 
-window.onload = function()
+var guessedLetter = [""]; // Array met geraden letters
+
+// Koppel eventlisteners als DOM geladen is aan bewuste elementen
+window.onload = function ()
 {
+    let letterOutput = document.querySelector("#letterOutput"); // Div waar de letters worden gerenderd
+    var submitButton = document.querySelector("#submit"); // Submit-knop
+    letterInput = document.querySelector("#letterInput");
+    letterInput.addEventListener('change', function () { enableSubmit(this.value, submitButton); });
+    submitButton.disabled = false;
     renderLetters(word);
     //submitButton.addEventListener("click", function(){ checkLetter();});
     //var submittedLetter = document.querySelector("#letterInput").value;
     //checkLetter(submittedLetter);
 }
 
-function renderLetters(word)
+function enableSubmit(input, button)
+{
+    if (input == "")
+    {
+        button.disabled = true;
+    }
+    else
+    {
+        button.disabled = false;
+    }
+}
+
+function renderLetters(word, guessedLetter)
 {
     let content = "";
-    for (let i=0; i < word.length ; i++)
+
+    // Itereer door alle letters van het woord
+    for (let i = 0; i < word.length; i++)
     {
         let element = document.createElement("div");
-        if (word[i] === "a")
+
+        // Als gekozen letter in het woord valt, render dan de letter
+        if (word[i].includes("e"))
         {
             content = document.createTextNode(word[i]);
         }
+        // Zo niet, render dan een streepje
         else
         {
             content = document.createTextNode("_");
         }
-        
+
         element.appendChild(content);
-        element.classList.add("letter","p-3", "m-1", "badge", "badge-secondary");
+        element.classList.add("letter", "p-3", "m-1", "badge", "badge-secondary");
         letterOutput.appendChild(element);
 
         // // Als er juiste woorden zijn geraden
@@ -60,22 +84,24 @@ function renderLetters(word)
 
 function checkLetter()
 {
-    var letter = document.querySelector("#letterInput").value.toLowerCase();
-    console.log("Letter is: " + letter);
+    guessedLetter.push();
+    console.log("Door de speler gekozen letter is: " + guessedLetter);
     var letterArray = [];
     var count = 0;
-    for (i=0; i < wordLength; i++)
+    for (i = 0; i < word.length; i++)
     {
-        console.log("De waarde van de letter op plek "+ i + " is: " + word.charAt(i));
-        if (letter == word.charAt(i))
+        console.log("De waarde van de letter op plek " + i + " is: " + word.charAt(i));
+        if (guessedLetter == word.charAt(i))
         {
             indexOfCorrectLetters.push(i);
             count = count + 1;
         }
         console.log(word[i]);
     }
-    console.log("De ingevoerde letter '" + letter + "' komt " + count + " keer voor in " + word);
-    console.log("Dit is de index van goede letters: " + indexOfCorrectLetters);
+    console.log("De ingevoerde letter '" + guessedLetter + "' komt " + count + " keer voor in " + word);
+    console.log("De geraden letters staan op plek: " + indexOfCorrectLetters);
     //console.log("Indexgrootte: " + indexOfCorrectLetters.length);
-    renderLetters(word, wordLength);
+    renderLetters(word, guessedLetter);
+
+    console.log(guessedLetter);
 }
