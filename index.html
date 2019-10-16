@@ -11,10 +11,14 @@
 <body>
     <div class="container">
         <h1>Galgje</h1>
-        <input type="text" id="letterInput" name="letterInput" placeholder="Voer letter in" class="form-control" maxlength="1">
+        <form>
+            <input type="text" id="letterInput" name="letterInput" placeholder="Voer letter in" class="form-control" maxlength="1">
         <button type="submit" id="submit" name="submit" class="btn-primary btn" onclick="checkLetter();" disabled>letter indienen</button>
+        </form>
+        
         <div id="letterOutput" class="row">
         </div>
+        <h1 id="counter">5</h1>
     </div>
     <script src="javascript/galgje.js"></script>
 </body>
