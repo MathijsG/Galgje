@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Galgje</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/base.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>Galgje</h1>
-        <form>
-            <input type="text" id="letterInput" name="letterInput" placeholder="Voer letter in" class="form-control" maxlength="1">
-        <button type="submit" id="submit" name="submit" class="btn-primary btn" onclick="checkLetter();" disabled>letter indienen</button>
-        </form>
-        
-        <div id="letterOutput" class="row">
+    <div class="container mt-2 mb-2 rounded shadow bg-light">
+        <h1 class="text-dark">Galgje</h1>
+        <div class="row justify-content-between">
+            <div class="col-6">
+                <p class="text-muted p-2 rounded">
+                    Spelregels: Raad het woord hieronder. Je mag maximaal <span class="rule"></span> fouten maken.
+                </p>
+            </div>
+            <div class="col-6">
+                <img width="200" height="200" class="gameImage shadow-sm rounded">
+            </div>
         </div>
-        <h1 id="counter">5</h1>
+
+        <hr>
+        <form onsubmit="return false;">
+            <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Voer een letter in:</div>
+                </div>
+                <input type="text" id="letterInput" name="letterInput" class="form-control form-group col-md-1"
+                    maxlength="1" autocomplete="off">
+                <button type="submit" id="submit" name="submit" class="btn-primary btn ml-2" onclick="checkLetter();"
+                    disabled>letter indienen</button>
+            </div>
+        </form>
+        <div id="letterOutput"></div>
+        <p class="text-muted">
+            <span id="counter"></span> beurten resterend
+        </p>
     </div>
     <script src="javascript/galgje.js"></script>
 </body>
+
 </html>

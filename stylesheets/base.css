@@ -1,0 +1,36 @@
+input[type=text]
+{
+    width: 40px;
+}
+
+
+body
+{
+    /* background-image: url('../images/back.jpg'); */
+    background-color: #6d695c;
+    background-image:
+    repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+    repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+    linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+    linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+    background-size: 70px 120px;
+}
+
+.container
+{
+    width: 600px;
+}
+
+.letter
+{
+    border: 1px dashed;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.gameImage
+{
+    background-image: url('../images/hangman/hangman.png');
+    background-position-x: 1400px;
+    background-repeat: repeat-x;
+}
