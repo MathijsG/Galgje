@@ -1,6 +1,6 @@
 
 // Woorden-array
-let wordList = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag", "Xylofoondocent", "Pittoresk"];
+let wordList = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag", "Xylofoondocent", "Pittoresk","Keukenkastjes", "Graveren", "Relikwie"];
 // Kies een random woord uit de array en zet deze naar geheel lowercase
 let word = wordList[Math.floor(Math.random() * wordList.length)].toLowerCase();
 
@@ -12,6 +12,7 @@ let amountOfTries = 6;
 let guessedLetters = new Set();
 
 // DOM koppeling
+let container = document.querySelector(".container");
 let counterElement = document.querySelector("#counter"); // Beurtenteller
 let letterInputElement = document.querySelector("#letterInput");
 let letterOutputElement = document.querySelector("#letterOutput"); // Div waar de letters worden gerenderd
@@ -27,7 +28,7 @@ let letterInput = letterInputElement.value;
 // Wanneer de input veranderd van het letterveld draai de submitcheck
 letterInputElement.oninput = submitCheck;
 
-renderLetters(word);
+renderCharacters(word);
 
 // Koppel eventlisteners als DOM geladen is aan bewuste elementen
 
@@ -38,7 +39,7 @@ function submitCheck()
     // Wanneer letterinput niet leeg is én er nog beurten over zijn en er nog niet gewonnen is
     if (letterInput !== "" && amountOfTries > 0)
     {
-        // Enable submiknop
+        // Enable submitknop
         submitButton.disabled = false;
     }
     // Anders de boel uitschakelen
@@ -49,7 +50,7 @@ function submitCheck()
     }
 }
 
-function renderLetters(word, letter)
+function renderCharacters(word, letter)
 {
     let content = document.createTextNode("");
 
@@ -102,7 +103,7 @@ function renderLetters(word, letter)
 
 function checkLetter()
 {
-    // Koppel letiable aan DOM-element en converteer de uitvoer naar kleine letters
+    // Koppel lettervariabele aan DOM-element en converteer de uitvoer naar kleine letters
     letterInput = letterInputElement.value.toLowerCase();
 
     // Check of de ingevoerde letter voor komt in het woord en of je aantal beurten nog toestaan dat je een letter invoert
@@ -127,7 +128,7 @@ function checkLetter()
         }
         counterElement.innerHTML = amountOfTries;
     }
-    renderLetters(word, letterInput);
+    renderCharacters(word, letterInput);
 
     letterInputElement.value = "";
 }
@@ -151,7 +152,7 @@ function changeImage()
 
 function gameWon()
 {
-    alert("Hoera, je hebt de galg overleefd");
+    container.innerHTML = `<h1>Hoera!</h1><p class="text-muted p-2">Door het raden van het woord is je de doodstraf bespaard! Doe er je voordeel mee!</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
 }
 
 function gameLost()
@@ -159,5 +160,6 @@ function gameLost()
     counterElement.innerHTML = amountOfTries;
     submitCheck();
     changeImage();
-    alert("Je bent gestorven aan de galg");
+
+    container.innerHTML = `<h1>Helaas!</h1><p class="text-muted p-2">Je laatste kans om onder de galg uit te komen, heb je helaas verspild. Blijkbaar kon je er geen touw aan vast knopen en was het spel wat te moeilijk. Gelukkig kan je met een druk op de knop een nieuw spel starten.</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
 }

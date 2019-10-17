@@ -12,35 +12,55 @@
 </head>
 
 <body>
-    <div class="container mt-2 mb-2 rounded shadow bg-light">
-        <h1 class="text-dark">Galgje</h1>
-        <div class="row justify-content-between">
-            <div class="col-6">
-                <p class="text-muted p-2 rounded">
-                    Spelregels: Raad het woord hieronder. Je mag maximaal <span class="rule"></span> fouten maken.
-                </p>
-            </div>
-            <div class="col-6">
-                <img width="200" height="200" class="gameImage shadow-sm rounded">
+    <div class="container p-2 mt-2 mb-2 rounded shadow bg-light">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 text-center">
+                <h1 class="text-dark">Galgje</h1>
+                <hr>
             </div>
         </div>
-
-        <hr>
-        <form onsubmit="return false;">
-            <div class="input-group mb-2">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">Voer een letter in:</div>
-                </div>
-                <input type="text" id="letterInput" name="letterInput" class="form-control form-group col-md-1"
-                    maxlength="1" autocomplete="off">
-                <button type="submit" id="submit" name="submit" class="btn-primary btn ml-2" onclick="checkLetter();"
-                    disabled>letter indienen</button>
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <p class="text-muted p-2 text-justify">
+                    Spelregels: Raad het woord hieronder, doormiddel van het invullen van een letter. Je mag maximaal <span class="rule"></span> fouten maken. Hierbij sterft de speler een tragische dood aan de galg.
+                </p>
             </div>
-        </form>
-        <div id="letterOutput"></div>
-        <p class="text-muted">
-            <span id="counter"></span> beurten resterend
-        </p>
+            <div class="col-sm-6 text-right">
+                <img width="200" height="200" class="gameImage rounded shadow-sm">
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12">
+                <hr>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 text-center">
+                <form onsubmit="return false;" class="text-center">
+                    <div class="input-group mb-2 text-center">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">Voer een letter in:</div>
+                        </div>
+                        <input type="text" id="letterInput" name="letterInput" class="form-control form-group ..col-sm-md-md-1"
+                            maxlength="1" autocomplete="off">
+                        <button type="submit" id="submit" name="submit" class="btn-primary btn ml-2"
+                            onclick="checkLetter();" disabled>letter indienen</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-12 text-center">
+                <div id="letterOutput"></div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 text-center">
+                <p class="text-muted">
+                    <span id="counter"></span> beurten resterend
+                </p>
+            </div>
+        </div>
     </div>
     <script src="javascript/galgje.js"></script>
 </body>
