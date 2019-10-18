@@ -1,6 +1,6 @@
 
 // Woorden-array
-let wordList = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag", "Xylofoondocent", "Pittoresk","Keukenkastjes", "Graveren", "Relikwie"];
+let wordList = ["Bananendoos", "Theelepel", "Herbivoor", "Kaassoufle", "Sjaggeraar", "Komkommerbedrijf", "Telecommunicatiewetgeving", "Fluviatiel", "Coniferenhaag", "Xylofoondocent", "Pittoresk", "Keukenkastjes", "Graveren", "Relikwie"];
 // Kies een random woord uit de array en zet deze naar geheel lowercase
 let word = wordList[Math.floor(Math.random() * wordList.length)].toLowerCase();
 
@@ -35,12 +35,25 @@ renderCharacters(word);
 // Functie die submitknop enabled en disabled
 function submitCheck()
 {
-    let letterInput = letterInputElement.value;
+    let letterInput = letterInputElement.value.toLowerCase();
     // Wanneer letterinput niet leeg is én er nog beurten over zijn en er nog niet gewonnen is
     if (letterInput !== "" && amountOfTries > 0)
     {
-        // Enable submitknop
-        submitButton.disabled = false;
+        // En er geen reeds geraden letter wordt ingevoerd
+
+        if (guessedLetters.size > 0)
+        {
+            if (guessedLetters.has(letterInput) !== true)
+            {
+                // Enable submitknop
+                submitButton.disabled = false;
+            }
+        }
+        else
+        {
+            // Enable submitknop
+            submitButton.disabled = false;
+        }
     }
     // Anders de boel uitschakelen
     else
@@ -131,6 +144,8 @@ function checkLetter()
     renderCharacters(word, letterInput);
 
     letterInputElement.value = "";
+    // Trigger nieuwe submitcheck na invoer
+    submitCheck();
 }
 
 function changeImage()
@@ -161,5 +176,5 @@ function gameLost()
     submitCheck();
     changeImage();
 
-    container.innerHTML = `<h1>Helaas!</h1><p class="text-muted p-2">Je laatste kans om onder de galg uit te komen, heb je helaas verspild. Blijkbaar kon je er geen touw aan vastknopen en was het woord voor jou te moeilijk. Gelukkig kan je met een druk op de knop een nieuw spel starten.</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
+    container.innerHTML = `<h1>Helaas!</h1><p class="text-muted p-2">Je laatste kans om onder de galg uit te komen, heb je helaas verspild. Blijkbaar kon je er geen touw aan vastknopen en was het woord voor jou te moeilijk. Gelukkig kan je met een druk op de knop een nieuw spel starten.</p><p class="text-muted p-2">Het juiste woord was: '${word}'</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
 }
