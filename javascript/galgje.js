@@ -152,7 +152,7 @@ function changeImage()
 
 function gameWon()
 {
-    container.innerHTML = `<h1>Hoera!</h1><p class="text-muted p-2">Door het raden van het woord is je de doodstraf bespaard! Doe er je voordeel mee!</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
+    container.innerHTML = `<h1>Hoera!</h1><p class="text-muted p-2">Door het raden van het woord '${word}' is je de doodstraf bespaard! Doe er je voordeel mee!</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
 }
 
 function gameLost()
@@ -161,5 +161,5 @@ function gameLost()
     submitCheck();
     changeImage();
 
-    container.innerHTML = `<h1>Helaas!</h1><p class="text-muted p-2">Je laatste kans om onder de galg uit te komen, heb je helaas verspild. Blijkbaar kon je er geen touw aan vast knopen en was het spel wat te moeilijk. Gelukkig kan je met een druk op de knop een nieuw spel starten.</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
+    container.innerHTML = `<h1>Helaas!</h1><p class="text-muted p-2">Je laatste kans om onder de galg uit te komen, heb je helaas verspild. Blijkbaar kon je er geen touw aan vastknopen en was het woord voor jou te moeilijk. Gelukkig kan je met een druk op de knop een nieuw spel starten.</p><button type="button" class="btn btn-primary" onclick="window.location.reload();">Nog een keer!</button`;
 }
